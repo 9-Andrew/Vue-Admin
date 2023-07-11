@@ -6,6 +6,7 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'virtual:svg-icons-register'
 import App from '@/App.vue'
 import globalComponent from '@/components'
+import '@/styles/index.scss'
 
 const app = createApp(App)
 

@@ -5,4 +5,8 @@
 
 <script lang="ts" setup></script>
 
-<style lang="" scoped></style>
+<style lang="scss" scoped>
+div {
+  color: $color;
+}
+</style>
