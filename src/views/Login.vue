@@ -9,13 +9,24 @@
           </div>
           <el-form>
             <el-form-item>
-              <el-input :prefix-icon="User" v-model="userInfo.username" clearable></el-input>
+              <el-input
+                :prefix-icon="User"
+                v-model="userInfo.username"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item>
-              <el-input :prefix-icon="Lock" :show-password="true" v-model="userInfo.username" clearable></el-input>
+              <el-input
+                :prefix-icon="Lock"
+                :show-password="true"
+                v-model="userInfo.username"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="login" :loading="isLoading">登录</el-button>
+              <el-button type="primary" @click="login" :loading="isLoading">
+                登录
+              </el-button>
             </el-form-item>
           </el-form>
         </el-card>
@@ -26,10 +37,10 @@
 
 <script lang="ts" setup>
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive, ref } from 'vue';
-import useUserStore from '@/store/modules/user';
-import { useRouter } from 'vue-router';
-import { ElNotification } from 'element-plus';
+import { reactive, ref } from 'vue'
+import useUserStore from '@/store/modules/user'
+import { useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
 
 const userInfo = reactive({ username: 'admin', password: '111111' })
 const store = useUserStore()
@@ -84,6 +95,5 @@ const login = async () => {
       }
     }
   }
-
 }
 </style>
