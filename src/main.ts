@@ -8,10 +8,12 @@ import 'virtual:svg-icons-register'
 import App from '@/App.vue'
 import globalComponent from '@/components'
 import '@/styles/index.scss'
+import store from '@/store';
 
 const app = createApp(App)
 
 app.use(router)
+app.use(store)
 app.use(ElementPlus, {
   locale: zhCn,
 })

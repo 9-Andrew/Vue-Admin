@@ -5,7 +5,7 @@ export interface LoginData {
 
 export interface LoginResponse {
   code: number
-  data: { token: string }
+  data: { token?: string; message?: string }
 }
 
 export interface UserInfoResponse {
