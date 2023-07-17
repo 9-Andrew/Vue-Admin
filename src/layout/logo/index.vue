@@ -11,7 +11,7 @@ import setting from '@/setting'
 
 <style lang="scss" scoped>
 .logo {
-  height:$base-logo-height;
+  height: $base-logo-height;
   padding: 12px;
   display: flex;
   justify-content: center;

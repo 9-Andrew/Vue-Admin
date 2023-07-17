@@ -8,7 +8,7 @@ export default [
       {
         path: 'home',
         component: () => import('@/views/index.vue'),
-        meta: { title: '首页' },
+        meta: { title: '首页', icon: 'HomeFilled' },
       },
     ],
   },
@@ -26,6 +26,6 @@ export default [
   {
     path: '/:catchAll(.*)',
     redirect: '/404',
-    meta: { title: '重定向', hidden: false },
+    meta: { title: '重定向', hidden: true },
   },
 ]
