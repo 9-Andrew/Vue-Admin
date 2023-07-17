@@ -1,22 +1,32 @@
 <template>
   <div class="layout-container">
     <div class="layout-sidebar">
-      <Logo></Logo>sidebar
+      <Logo></Logo>
+      <el-scrollbar class="scroll-container">
+        <el-menu default-active="1" background-color="$base-sidebar-background" text-color="#959EA6" active-text-color="#fff" >
+          <Menu :menuRoutes="store.menuRoutes"></Menu>
+        </el-menu>
+      </el-scrollbar>
     </div>
     <div class="layout-main">
       <div class="layout-tabbar">tabbar</div>
-      <div class="layout-content">content
-        <div style="height:5000px"></div>
-      </div>
+      <el-scrollbar class="layout-content" :always="true">
+        content
+        <div style="height: 2000px"></div>
+      </el-scrollbar>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Logo from './logo/index.vue';
+import Logo from './logo/index.vue'
+import Menu from './menu/index.vue';
+import useUserStore from '@/store/modules/user';
+
+let store = useUserStore()
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .layout-container {
   display: flex;
   width: 100vw;
@@ -25,6 +35,14 @@ import Logo from './logo/index.vue';
   .layout-sidebar {
     width: $base-sidebar-width;
     background-color: $base-sidebar-background;
+
+    .scroll-container {
+      height: calc(100vh - $base-logo-height);
+
+      .el-menu {
+        border-right: none;
+      }
+    }
   }
 
   .layout-main {

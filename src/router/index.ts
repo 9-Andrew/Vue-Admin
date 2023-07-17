@@ -1,23 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import routes from './routes';
 
 let router = createRouter({
   history: createWebHashHistory(),
-  routes: [
-    { path: '/', component: () => import('@/layout/index.vue'), name: 'home' },
-    {
-      path: '/login',
-      component: () => import('@/views/Login.vue'),
-      name: 'login',
-    },
-    {
-      path: '/404',
-      component: () => import('@/views/404.vue'),
-    },
-    {
-      path: '/:catchAll(.*)',
-      redirect: '/404',
-    },
-  ],
+  routes,
   scrollBehavior() {
     return {
       left: 0,

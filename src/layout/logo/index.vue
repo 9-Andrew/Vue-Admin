@@ -1,16 +1,17 @@
 <template>
   <div class="logo">
-    <img :src="setting.logo_url" alt="">
+    <img :src="setting.logo_url" alt="" />
     <h1>{{ setting.title }}</h1>
   </div>
 </template>
 
 <script lang="ts" setup>
-import setting from '@/setting.ts';
+import setting from '@/setting'
 </script>
 
 <style lang="scss" scoped>
 .logo {
+  height:$base-logo-height;
   padding: 12px;
   display: flex;
   justify-content: center;
@@ -25,7 +26,7 @@ import setting from '@/setting.ts';
     line-height: 32px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-left:18px;
+    margin-left: 18px;
   }
 
   img {

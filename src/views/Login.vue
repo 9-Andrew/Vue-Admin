@@ -9,10 +9,19 @@
           </div>
           <el-form :model="userInfo" :rules="rules" ref="loginForm">
             <el-form-item prop="username">
-              <el-input :prefix-icon="User" v-model="userInfo.username" clearable></el-input>
+              <el-input
+                :prefix-icon="User"
+                v-model="userInfo.username"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <el-input :prefix-icon="Lock" :show-password="true" v-model="userInfo.password" clearable></el-input>
+              <el-input
+                :prefix-icon="Lock"
+                :show-password="true"
+                v-model="userInfo.password"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="login" :loading="isLoading">
@@ -32,7 +41,7 @@ import { reactive, ref } from 'vue'
 import useUserStore from '@/store/modules/user'
 import { useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
-import { getTime } from '@/utils/time';
+import { getTime } from '@/utils/time'
 
 const userInfo = reactive({ username: 'admin', password: '111111' })
 const store = useUserStore()
@@ -47,8 +56,16 @@ const validatorPassword = (rule: any, value: any, callback: any) => {
   }
 }
 const rules = {
-  username: [{ required: true, min: 5, max: 10, message: '账号长度至少5位', trigger: 'change' }],
-  password: [{ validator: validatorPassword, trigger: 'change' }]
+  username: [
+    {
+      required: true,
+      min: 5,
+      max: 10,
+      message: '账号长度至少5位',
+      trigger: 'change',
+    },
+  ],
+  password: [{ validator: validatorPassword, trigger: 'change' }],
 }
 
 const login = async () => {
@@ -57,14 +74,17 @@ const login = async () => {
   try {
     await store.userLogin(userInfo)
     router.push('/')
-    ElNotification({ type: 'success', title: `Hi,${getTime()}好`, message: '欢迎回来' })
+    ElNotification({
+      type: 'success',
+      title: `Hi,${getTime()}好`,
+      message: '欢迎回来',
+    })
   } catch (error) {
     ElNotification({ type: 'error', message: (error as Error).message })
   } finally {
     isLoading.value = false
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
