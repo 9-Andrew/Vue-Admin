@@ -1,4 +1,4 @@
-import SvgIcon from './SvgIcon.vue'
+import SvgIcon from './SvgIcon/index.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const components = { SvgIcon }

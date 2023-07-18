@@ -3,13 +3,7 @@
     <div class="layout-sidebar">
       <Logo></Logo>
       <el-scrollbar class="scroll-container">
-        <el-menu
-          default-active="1"
-          background-color="$base-sidebar-background"
-          text-color="#959EA6"
-          active-text-color="#fff"
-          router
-        >
+        <el-menu background-color="$base-sidebar-background" text-color="#959EA6" active-text-color="#fff" router>
           <Menu :menuRoutes="store.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
@@ -17,8 +11,7 @@
     <div class="layout-main">
       <div class="layout-tabbar">tabbar</div>
       <el-scrollbar class="layout-content" :always="true">
-        content
-        <div style="height: 2000px"></div>
+        <Main></Main>
       </el-scrollbar>
     </div>
   </div>
@@ -27,7 +20,9 @@
 <script lang="ts" setup>
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
+import Main from './main/index.vue';
 import useUserStore from '@/store/modules/user'
+
 
 let store = useUserStore()
 </script>
