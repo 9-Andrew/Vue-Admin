@@ -12,9 +12,8 @@ import setting from '@/setting'
 <style lang="scss" scoped>
 .logo {
   height: $base-logo-height;
-  padding: 12px;
+  padding: 15px;
   display: flex;
-  justify-content: center;
 
   h1 {
     color: #959ea6;
@@ -26,7 +25,7 @@ import setting from '@/setting'
     line-height: 32px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-left: 18px;
+    margin-left: 40px;
   }
 
   img {

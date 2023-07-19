@@ -3,7 +3,7 @@ import { reqLogin } from '@/api/user/index'
 import { LoginData } from '@/api/user/type'
 import routes from '@/router/routes'
 
-let useUserStore = defineStore('user', {
+const useUserStore = defineStore('user', {
   state: () => {
     return {
       TOKEN: localStorage.getItem('TOKEN'),

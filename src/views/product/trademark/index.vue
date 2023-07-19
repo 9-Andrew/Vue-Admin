@@ -1,11 +1,5 @@
-<template>
-  品牌管理
-</template>
+<template>品牌管理</template>
 
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-</script>
-
-<style scoped>
-  
-</style>
+<style scoped></style>
