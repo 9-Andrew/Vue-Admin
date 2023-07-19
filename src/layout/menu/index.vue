@@ -8,7 +8,10 @@
         <span>{{ mr.meta.title }}</span>
       </template>
     </el-menu-item>
-    <el-menu-item v-else-if="mr.children.length == 1" :index="mr.children[0].path">
+    <el-menu-item
+      v-else-if="mr.children.length == 1"
+      :index="mr.children[0].path"
+    >
       <el-icon>
         <component :is="mr.children[0].meta.icon"></component>
       </el-icon>

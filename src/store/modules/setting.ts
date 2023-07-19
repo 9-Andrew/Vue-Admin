@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 const useLayoutSettingStore = defineStore('setting', {
   state() {
-    return { fold: Boolean(localStorage.getItem('isFold')) }
+    return { fold: Boolean(localStorage.getItem('isFold')), refresh: false }
   },
   actions: {
     changeFold() {

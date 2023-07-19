@@ -1,4 +1,4 @@
-<template>属性管理</template>
+<template><h1>属性管理</h1></template>
 
 <script lang="ts" setup></script>
 
