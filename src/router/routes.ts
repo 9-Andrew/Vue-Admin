@@ -1,8 +1,13 @@
 export default [
   {
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    name: 'login',
+    meta: { title: '登录', hidden: true },
+  },
+  {
     path: '/',
     component: () => import('@/layout/index.vue'),
-    meta: { title: 'layout' },
     redirect: '/home',
     children: [
       {
@@ -12,12 +17,7 @@ export default [
       },
     ],
   },
-  {
-    path: '/login',
-    component: () => import('@/views/login/index.vue'),
-    name: 'login',
-    meta: { title: '登录', hidden: true },
-  },
+
   {
     path: '/screen',
     component: () => import('@/views/screen/index.vue'),
@@ -28,6 +28,7 @@ export default [
     path: '/acl',
     component: () => import('@/layout/index.vue'),
     meta: { title: '权限管理', icon: 'Lock' },
+    redirect: '/acl/user',
     children: [
       {
         path: '/acl/user',
@@ -53,6 +54,7 @@ export default [
     path: '/product',
     component: () => import('@/layout/index.vue'),
     meta: { title: '商品管理', icon: 'Goods' },
+    redirect: '/product/trademark',
     children: [
       {
         path: '/product/trademark',

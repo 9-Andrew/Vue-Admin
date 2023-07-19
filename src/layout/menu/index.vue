@@ -13,7 +13,7 @@
         <component :is="mr.children[0].meta.icon"></component>
       </el-icon>
       <template #title>
-        <span>{{ mr.meta.title }}</span>
+        <span>{{ mr.children[0].meta.title }}</span>
       </template>
     </el-menu-item>
     <el-sub-menu v-else :index="mr.path">
@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import Menu from './index.vue'
 const props = defineProps(['menuRoutes'])
-const routes = props.menuRoutes.filter((item: any) => !item.meta.hidden)
+const routes = props.menuRoutes.filter((item: any) => !item?.meta?.hidden)
 </script>
 
 <style scoped></style>
