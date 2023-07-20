@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <el-button size="small" circle icon="Refresh" @click="store.refresh = !store.refresh"></el-button>
-    <el-button size="small" circle icon="FullScreen"></el-button>
+    <el-button size="small" circle icon="FullScreen" @click="fullScreen"></el-button>
     <el-button size="small" circle icon="Setting"></el-button>
     <el-avatar icon="el-icon-user-solid" size="small" shape="circle" src="/avatar.jpg" fit="fill"
       class="avatar"></el-avatar>
@@ -22,9 +22,17 @@
 </template>
 
 <script lang="ts" setup>
-import useLayoutSettingStore from '@/store/modules/setting';
+import useLayoutSettingStore from '@/store/modules/setting'
 
 const store = useLayoutSettingStore()
+const fullScreen = () => {
+  let full = document.fullscreenElement
+  if (full) {
+    document.exitFullscreen()
+  } else {
+    document.documentElement.requestFullscreen()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
