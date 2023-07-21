@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { reqLogin } from '@/api/user/index'
+import { reqLogin, reqUserInfo } from '@/api/user/index'
 import { LoginData } from '@/api/user/type'
 import routes from '@/router/routes'
 
@@ -8,6 +8,7 @@ const useUserStore = defineStore('user', {
     return {
       TOKEN: localStorage.getItem('TOKEN'),
       menuRoutes: routes,
+      userInfo: { username: '', avatar: '' },
     }
   },
   actions: {
@@ -19,6 +20,12 @@ const useUserStore = defineStore('user', {
         return 'ok'
       } else {
         return Promise.reject(new Error(result.data.message))
+      }
+    },
+    async getUserInfo() {
+      let result = await reqUserInfo()
+      if (result.code == 200) {
+        this.userInfo = result.data.checkUser
       }
     },
   },

@@ -1,13 +1,13 @@
 <template>
   <div class="setting">
-    <el-button size="small" circle icon="Refresh" @click="store.refresh = !store.refresh"></el-button>
+    <el-button size="small" circle icon="Refresh" @click="settingStore.refresh = !settingStore.refresh"></el-button>
     <el-button size="small" circle icon="FullScreen" @click="fullScreen"></el-button>
     <el-button size="small" circle icon="Setting"></el-button>
-    <el-avatar icon="el-icon-user-solid" size="small" shape="circle" src="/avatar.jpg" fit="fill"
+    <el-avatar icon="el-icon-user-solid" size="small" shape="circle" :src="userStore.userInfo.avatar" fit="fill"
       class="avatar"></el-avatar>
     <el-dropdown>
       <span class="el-dropdown-link">
-        Admin
+        {{userStore.userInfo.username}}
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
@@ -22,9 +22,13 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue';
 import useLayoutSettingStore from '@/store/modules/setting'
+import useUserStore from '@/store/modules/user';
 
-const store = useLayoutSettingStore()
+const settingStore = useLayoutSettingStore()
+const userStore = useUserStore()
+
 const fullScreen = () => {
   let full = document.fullscreenElement
   if (full) {
@@ -33,6 +37,9 @@ const fullScreen = () => {
     document.documentElement.requestFullscreen()
   }
 }
+onMounted(() => {
+  userStore.getUserInfo()
+})
 </script>
 
 <style lang="scss" scoped>
