@@ -28,6 +28,10 @@ const useUserStore = defineStore('user', {
         this.userInfo = result.data.checkUser
       }
     },
+    logout(){
+      localStorage.clear()
+      this.$reset()
+    }
   },
 })
 export default useUserStore

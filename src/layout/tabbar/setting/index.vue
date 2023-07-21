@@ -7,14 +7,14 @@
       class="avatar"></el-avatar>
     <el-dropdown>
       <span class="el-dropdown-link">
-        {{userStore.userInfo.username}}
+        {{ userStore.userInfo.username }}
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>Action 1</el-dropdown-item>
+          <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -22,12 +22,15 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
+import { useRouter,useRoute } from 'vue-router';
 import useLayoutSettingStore from '@/store/modules/setting'
-import useUserStore from '@/store/modules/user';
+import useUserStore from '@/store/modules/user'
 
 const settingStore = useLayoutSettingStore()
 const userStore = useUserStore()
+const router = useRouter()
+const route = useRoute()
 
 const fullScreen = () => {
   let full = document.fullscreenElement
@@ -36,6 +39,10 @@ const fullScreen = () => {
   } else {
     document.documentElement.requestFullscreen()
   }
+}
+const logout = () => {
+  userStore.logout()
+  router.replace({path:'/login',query:{redirect:route.path}})
 }
 onMounted(() => {
   userStore.getUserInfo()
