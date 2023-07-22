@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { reqLogin, reqUserInfo } from '@/api/user/index'
-import { LoginData } from '@/api/user/type'
+import { reqLogin, reqUserInfo, reqLogout } from '@/api/user/index'
+import { LoginData, LoginResponse, UserInfoResponse } from '@/api/user/type'
 import routes from '@/router/routes'
 
 const useUserStore = defineStore('user', {
@@ -8,30 +8,33 @@ const useUserStore = defineStore('user', {
     return {
       TOKEN: localStorage.getItem('TOKEN'),
       menuRoutes: routes,
-      userInfo: { username: '', avatar: '' },
+      userInfo: {},
     }
   },
   actions: {
     async userLogin(data: LoginData) {
-      let result = await reqLogin(data)
+      let result: LoginResponse = await reqLogin(data)
       if (result.code == 200) {
-        this.TOKEN = result.data.token!
+        this.TOKEN = result.data
         localStorage.setItem('TOKEN', this.TOKEN!)
         return 'ok'
       } else {
-        return Promise.reject(new Error(result.data.message))
+        return Promise.reject(new Error(result.data))
       }
     },
     async getUserInfo() {
-      let result = await reqUserInfo()
+      let result: UserInfoResponse = await reqUserInfo()
       if (result.code == 200) {
-        this.userInfo = result.data.checkUser
+        this.userInfo = result.data
       }
     },
-    logout(){
-      localStorage.clear()
-      this.$reset()
-    }
+    async logout() {
+      let result: any = await reqLogout()
+      if (result.code == 200) {
+        localStorage.clear()
+        this.$reset()
+      }
+    },
   },
 })
 export default useUserStore

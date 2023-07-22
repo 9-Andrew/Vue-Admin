@@ -1,10 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes'
-import nprogress from 'nprogress';
+import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+import setting from '@/setting'
+import useUserStore from '@/store/modules/user'
 
 nprogress.configure({
-  showSpinner: false
+  showSpinner: false,
 })
 
 let router = createRouter({
@@ -18,11 +20,27 @@ let router = createRouter({
   },
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   nprogress.start()
-  next()
+  let store = useUserStore()
+  if (store.TOKEN) {
+    if (to.path === '/login') {
+      next(false)
+    }
+    if (!store.userInfo.username) {
+      await store.getUserInfo()
+    }
+    next()
+  } else {
+    if (to.path === '/login') {
+      next()
+    } else {
+      next({ path: '/login', query: { redirect: to.path } })
+    }
+  }
 })
 router.afterEach((to, from) => {
+  document.title = `${setting.title}  | ${to.meta.title}`
   nprogress.done()
 })
 export default router

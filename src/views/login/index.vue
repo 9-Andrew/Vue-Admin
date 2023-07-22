@@ -9,10 +9,19 @@
           </div>
           <el-form :model="userInfo" :rules="rules" ref="loginForm">
             <el-form-item prop="username">
-              <el-input :prefix-icon="User" v-model="userInfo.username" clearable></el-input>
+              <el-input
+                :prefix-icon="User"
+                v-model="userInfo.username"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <el-input :prefix-icon="Lock" :show-password="true" v-model="userInfo.password" clearable></el-input>
+              <el-input
+                :prefix-icon="Lock"
+                :show-password="true"
+                v-model="userInfo.password"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="login" :loading="isLoading">
@@ -34,13 +43,13 @@ import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
 
-const userInfo = reactive({ username: 'admin', password: '111111' })
+const userInfo = reactive({ username: 'admin', password: 'atguigu123' })
 const store = useUserStore()
 const router = useRouter()
 const route = useRoute()
 const isLoading = ref(false)
 const loginForm = ref()
-const validatorPassword = (rule: any, value: any, callback: any) => {
+const validatorPassword = (_rule: any, value: any, callback: any) => {
   if (/^\w{6,}/.test(value)) {
     callback()
   } else {
@@ -65,7 +74,7 @@ const login = async () => {
   isLoading.value = true
   try {
     await store.userLogin(userInfo)
-    router.push({ path: route.query.redirect as string || '/' })
+    router.push({ path: (route.query.redirect as string) || '/' })
     ElNotification({
       type: 'success',
       title: `Hi,${getTime()}好`,

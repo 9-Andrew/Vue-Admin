@@ -3,11 +3,11 @@
     <el-button size="small" circle icon="Refresh" @click="settingStore.refresh = !settingStore.refresh"></el-button>
     <el-button size="small" circle icon="FullScreen" @click="fullScreen"></el-button>
     <el-button size="small" circle icon="Setting"></el-button>
-    <el-avatar icon="el-icon-user-solid" size="small" shape="circle" :src="userStore.userInfo.avatar" fit="fill"
+    <el-avatar icon="el-icon-user-solid" size="small" shape="circle" :src="(userStore.userInfo as User).avatar" fit="fill"
       class="avatar"></el-avatar>
     <el-dropdown>
       <span class="el-dropdown-link">
-        {{ userStore.userInfo.username }}
+        {{ (userStore.userInfo as User).username }}
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
@@ -22,10 +22,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router'
 import useLayoutSettingStore from '@/store/modules/setting'
 import useUserStore from '@/store/modules/user'
+import type { User } from '@/api/user/type';
 
 const settingStore = useLayoutSettingStore()
 const userStore = useUserStore()
@@ -42,11 +42,9 @@ const fullScreen = () => {
 }
 const logout = () => {
   userStore.logout()
-  router.replace({path:'/login',query:{redirect:route.path}})
+  router.replace({ path: '/login', query: { redirect: route.path } })
 }
-onMounted(() => {
-  userStore.getUserInfo()
-})
+
 </script>
 
 <style lang="scss" scoped>
