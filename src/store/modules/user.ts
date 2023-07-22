@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user/index'
-import { LoginData, LoginResponse, UserInfoResponse } from '@/api/user/type'
+import type {
+  LoginData,
+  LoginResponse,
+  UserInfoResponse,
+} from '@/api/user/type'
 import routes from '@/router/routes'
 
 const useUserStore = defineStore('user', {

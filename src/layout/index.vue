@@ -3,8 +3,14 @@
     <div class="layout-sidebar" :class="{ fold: settingStore.fold }">
       <Logo></Logo>
       <el-scrollbar class="scroll-container">
-        <el-menu :collapse="settingStore.fold" active-text-color="#fff" background-color="#001529" text-color="#959ea6"
-          :default-active="route.path" router>
+        <el-menu
+          :collapse="settingStore.fold"
+          active-text-color="#fff"
+          background-color="#001529"
+          text-color="#959ea6"
+          :default-active="route.path"
+          router
+        >
           <Menu :menuRoutes="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
@@ -43,7 +49,7 @@ const route = useRoute()
   .layout-sidebar {
     width: $base-sidebar-width;
     background-color: $base-sidebar-background;
-    transition: width 0.3s;
+    transition: width 0.4s;
 
     .scroll-container {
       height: calc(100vh - $base-logo-height);
@@ -63,7 +69,7 @@ const route = useRoute()
 
     .layout-tabbar {
       height: $base-tabbar-height;
-      box-shadow: 0 1px 2px 2px rgba($color: #000000, $alpha: .2);
+      box-shadow: 0 1px 2px 2px rgba($color: #000000, $alpha: 0.2);
     }
 
     .layout-content {

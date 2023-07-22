@@ -34,14 +34,14 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
-    server:{
-      proxy:{
+    server: {
+      proxy: {
         [env.VITE_APP_BASE_API]: {
           target: env.VITE_SERVER,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
-      }
-    }
+      },
+    },
   }
 })
