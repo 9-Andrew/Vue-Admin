@@ -4,10 +4,10 @@ interface Response {
   ok: string
 }
 
-interface Trademark {
+export interface Trademark {
   id?: number
-  createTime: string
-  updateTime: string
+  createTime?: string
+  updateTime?: string
   tmName: string
   logoUrl: string
 }

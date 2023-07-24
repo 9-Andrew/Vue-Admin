@@ -65,6 +65,7 @@ const route = useRoute()
   }
 
   .layout-main {
+    width: 1000px;
     flex-grow: 1;
 
     .layout-tabbar {

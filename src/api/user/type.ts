@@ -17,13 +17,9 @@ export interface UserInfoResponse extends Response {
 }
 
 export interface User {
-  userId: number
   avatar: string
-  username: string
-  password: string
-  desc: string
+  name: string
   roles: string[]
   buttons: string[]
   routes: string[]
-  token: string
 }

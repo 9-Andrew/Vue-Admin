@@ -5,14 +5,21 @@ import type {
   LoginResponse,
   UserInfoResponse,
 } from '@/api/user/type'
+import type { UserState } from './type/type'
 import routes from '@/router/routes'
 
 const useUserStore = defineStore('user', {
-  state: () => {
+  state(): UserState {
     return {
       TOKEN: localStorage.getItem('TOKEN'),
       menuRoutes: routes,
-      userInfo: {},
+      userInfo: {
+        avatar: '',
+        name: '',
+        roles: [],
+        buttons: [],
+        routes: [],
+      },
     }
   },
   actions: {
