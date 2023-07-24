@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { reqC1, reqC2, reqC3 } from '@/api/product/attr/index'
-import type { CategoryResponse } from '@/api/product/attr/type'
+import { reqC1, reqC2, reqC3, reqAttr } from '@/api/product/attr/index'
+import type { CategoryResponse, AttrResponse } from '@/api/product/attr/type'
 import type { CategoryState } from './type/type'
 
 const useCategoryStore = defineStore('category', {
@@ -31,6 +31,16 @@ const useCategoryStore = defineStore('category', {
       const result: CategoryResponse = await reqC3(this.C2ID)
       if (result.code == 200) {
         this.C3List = result.data
+      }
+    },
+    async getAttr() {
+      const result: AttrResponse = await reqAttr(
+        this.C1ID,
+        this.C2ID,
+        this.C3ID,
+      )
+      if (result.code == 200) {
+        return result.data
       }
     },
   },

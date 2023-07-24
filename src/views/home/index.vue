@@ -1,11 +1,11 @@
 <template>
-  <div>{{store.userInfo.name}}</div>
+  <div>{{ store.userInfo.name }}</div>
 </template>
 
 <script lang="ts" setup>
-import useUserStore from '@/store/modules/user';
+import useUserStore from '@/store/modules/user'
 
-const store=useUserStore()
+const store = useUserStore()
 </script>
 
 <style scoped></style>
