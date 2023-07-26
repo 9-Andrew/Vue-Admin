@@ -17,12 +17,13 @@ export interface CategoryResponse extends Response {
   data: Category[]
 }
 
-interface AtrrValue {
+export interface AttrValue {
   id?: number
   valueName: string
   attrId?: number
   createTime?: null
   updateTime?: null
+  viewable?: boolean
 }
 
 export interface Attr {
@@ -32,7 +33,7 @@ export interface Attr {
   attrName: string
   categoryId: number | string
   categoryLevel: number
-  attrValueList: AtrrValue[]
+  attrValueList: AttrValue[]
 }
 export interface AttrResponse extends Response {
   data: Attr[]
