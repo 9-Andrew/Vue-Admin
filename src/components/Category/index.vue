@@ -2,7 +2,7 @@
   <el-card
     shadow="always"
     :body-style="{ padding: '20px' }"
-    style="margin-bottom: 10px;"
+    style="margin-bottom: 10px"
   >
     <el-form label-width="80px" :inline="true">
       <el-form-item label="一级分类">
