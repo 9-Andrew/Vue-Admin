@@ -16,6 +16,8 @@ enum API {
   ALLSALEATTR_URL = '/admin/product/baseSaleAttrList',
   ADDSPU_URL = '/admin/product/saveSpuInfo',
   UPDATESPU_URL = '/admin/product/updateSpuInfo',
+  SAVESKU_URL = '/admin/product/saveSkuInfo',
+  SKULIST_URL = '/admin/product/findBySpuId/',
 }
 
 export const reqSPU = (page: number, limit: number, c3ID: number | string) =>
@@ -37,3 +39,7 @@ export const reqAddOrUPdateSPU = (spu: SPU) => {
     return request.post<any, any>(API.UPDATESPU_URL, spu)
   }
 }
+export const reqSaveSKU = (data: any) =>
+  request.post<any, any>(API.SAVESKU_URL, data)
+export const reqSKUList = (id: number | string) =>
+  request<any, any>(API.SKULIST_URL + id)

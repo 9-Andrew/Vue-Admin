@@ -12,9 +12,9 @@
           <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
           <el-table-column label="操作">
             <template v-slot="{ row }">
-              <el-button type="primary" size="small" icon="Plus" @click=""></el-button>
+              <el-button type="primary" size="small" icon="Plus" @click="addSKU(row)"></el-button>
               <el-button type="warning" size="small" icon="Edit" @click="editSPU(row)"></el-button>
-              <el-button type="info" size="small" icon="InfoFilled" @click=""></el-button>
+              <el-button type="info" size="small" icon="InfoFilled" @click="showSKUInfo(row.id)"></el-button>
               <el-popconfirm :title="`你确认要删除${row}吗？`" icon="Delete" width="200px" @confirm="">
                 <template #reference>
                   <el-button type="danger" size="small" icon="Delete"></el-button>
@@ -28,7 +28,21 @@
           @current-change="getData" />
       </div>
       <SPUForm v-show="scene == 1" ref="SPU" @changeScene="changeScene"></SPUForm>
-      <SKUForm v-show="scene == 2"></SKUForm>
+      <SKUForm v-show="scene == 2" ref="SKU" @changeScene="changeScene"></SKUForm>
+      <el-dialog title="SKU列表" v-model="dialogVisible" width="30%">
+        <el-table :data="SKUList">
+          <el-table-column prop="skuName" label="SKU名称"></el-table-column>
+          <el-table-column prop="price" label="SKU价格"></el-table-column>
+          <el-table-column prop="weight" label="SKU重量"></el-table-column>
+          <el-table-column prop="col.id" label="SKU图片">
+            <template v-slot="{ row }">
+              <el-image :src="row.skuDefaultImg" fit="fill" :lazy="true"></el-image>
+            </template>
+          </el-table-column>
+        </el-table>
+
+      </el-dialog>
+
     </el-card>
   </div>
 </template>
@@ -36,10 +50,10 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import useCategoryStore from '@/store/modules/category'
-import { reqSPU } from '@/api/product/spu/index'
+import { reqSPU, reqSKUList } from '@/api/product/spu/index'
 import type { SPU } from '@/api/product/spu/type'
-import SKUForm from './SKUForm.vue';
-import SPUForm from './SPUForm.vue';
+import SKUForm from './SKUForm.vue'
+import SPUForm from './SPUForm.vue'
 
 const store = useCategoryStore()
 const scene = ref(0)
@@ -48,6 +62,9 @@ const limit = ref(3)
 const total = ref(0)
 const SPUList = ref<SPU[]>([])
 const SPU = ref()
+const SKU = ref()
+const dialogVisible = ref(false)
+const SKUList = ref([])
 
 const getData = async () => {
   let result = await reqSPU(pageNo.value, limit.value, store.C3ID)
@@ -71,9 +88,18 @@ const editSPU = (row: SPU) => {
 const changeScene = (obj: any) => {
   scene.value = obj.scene
   obj.page && (pageNo.value = obj.page)
-  console.log(obj);
-  
   getData()
+}
+const addSKU = (row: SPU) => {
+  scene.value = 2
+  SKU.value.initAddData(store.C1ID, store.C2ID, row)
+}
+const showSKUInfo = async (skuId: number) => {
+  let result = await reqSKUList(skuId)
+  if (result.code == 200) {
+    SKUList.value = result.data
+    dialogVisible.value = true
+  }
 }
 watch(
   () => store.C3ID,

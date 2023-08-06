@@ -45,6 +45,7 @@ export interface SaleAttr {
   spuSaleAttrValueList: SaleAttrValue[]
   editable?: boolean
   newName?: string
+  saleAttrIdAndValue?: ''
 }
 interface SaleAttrValue {
   id?: number
