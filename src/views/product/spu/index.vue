@@ -15,7 +15,7 @@
               <el-button type="primary" size="small" icon="Plus" @click="addSKU(row)"></el-button>
               <el-button type="warning" size="small" icon="Edit" @click="editSPU(row)"></el-button>
               <el-button type="info" size="small" icon="InfoFilled" @click="showSKUInfo(row.id)"></el-button>
-              <el-popconfirm :title="`你确认要删除${row}吗？`" icon="Delete" width="200px" @confirm="">
+              <el-popconfirm :title="`你确认要删除${row.spuName}吗？`" icon="Delete" width="200px" @confirm="deleteSPU(row.id)">
                 <template #reference>
                   <el-button type="danger" size="small" icon="Delete"></el-button>
                 </template>
@@ -40,9 +40,7 @@
             </template>
           </el-table-column>
         </el-table>
-
       </el-dialog>
-
     </el-card>
   </div>
 </template>
@@ -50,10 +48,11 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import useCategoryStore from '@/store/modules/category'
-import { reqSPU, reqSKUList } from '@/api/product/spu/index'
+import { reqSPU, reqSKUList, reqDeleteSPU } from '@/api/product/spu/index'
 import type { SPU } from '@/api/product/spu/type'
 import SKUForm from './SKUForm.vue'
 import SPUForm from './SPUForm.vue'
+import { ElMessage } from 'element-plus'
 
 const store = useCategoryStore()
 const scene = ref(0)
@@ -99,6 +98,14 @@ const showSKUInfo = async (skuId: number) => {
   if (result.code == 200) {
     SKUList.value = result.data
     dialogVisible.value = true
+  }
+}
+const deleteSPU = async (skuId: number) => {
+  let result = await reqDeleteSPU(skuId)
+  if (result.code == 200) {
+    ElMessage.success('删除成功！')
+    SPUList.value.length == 1 && (pageNo.value = pageNo.value - 1)
+    getData()
   }
 }
 watch(

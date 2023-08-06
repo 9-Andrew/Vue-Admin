@@ -18,6 +18,7 @@ enum API {
   UPDATESPU_URL = '/admin/product/updateSpuInfo',
   SAVESKU_URL = '/admin/product/saveSkuInfo',
   SKULIST_URL = '/admin/product/findBySpuId/',
+  DELETESPU_URL = '/admin/product/deleteSpu/',
 }
 
 export const reqSPU = (page: number, limit: number, c3ID: number | string) =>
@@ -43,3 +44,5 @@ export const reqSaveSKU = (data: any) =>
   request.post<any, any>(API.SAVESKU_URL, data)
 export const reqSKUList = (id: number | string) =>
   request<any, any>(API.SKULIST_URL + id)
+export const reqDeleteSPU = (spuId: number) =>
+  request.delete<any, any>(API.DELETESPU_URL + spuId)
