@@ -3,32 +3,85 @@
     <Category></Category>
     <el-card shadow="always" :body-style="{ padding: '20px' }">
       <div v-show="scene == 0">
-        <el-button type="primary" icon="Plus" :disabled="!store.C3ID" @click="addSPU">
+        <el-button
+          type="primary"
+          icon="Plus"
+          :disabled="!store.C3ID"
+          @click="addSPU"
+        >
           添加SPU
         </el-button>
         <el-table :data="SPUList" border style="margin: 20px 0">
-          <el-table-column label="序号" width="80px" align="center" type="index" />
+          <el-table-column
+            label="序号"
+            width="80px"
+            align="center"
+            type="index"
+          />
           <el-table-column label="SPU名称" prop="spuName" />
-          <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
+          <el-table-column
+            label="SPU描述"
+            prop="description"
+            show-overflow-tooltip
+          ></el-table-column>
           <el-table-column label="操作">
             <template v-slot="{ row }">
-              <el-button type="primary" size="small" icon="Plus" @click="addSKU(row)"></el-button>
-              <el-button type="warning" size="small" icon="Edit" @click="editSPU(row)"></el-button>
-              <el-button type="info" size="small" icon="InfoFilled" @click="showSKUInfo(row.id)"></el-button>
-              <el-popconfirm :title="`你确认要删除${row.spuName}吗？`" icon="Delete" width="200px" @confirm="deleteSPU(row.id)">
+              <el-button
+                type="primary"
+                size="small"
+                icon="Plus"
+                @click="addSKU(row)"
+              ></el-button>
+              <el-button
+                type="warning"
+                size="small"
+                icon="Edit"
+                @click="editSPU(row)"
+              ></el-button>
+              <el-button
+                type="info"
+                size="small"
+                icon="InfoFilled"
+                @click="showSKUInfo(row.id)"
+              ></el-button>
+              <el-popconfirm
+                :title="`你确认要删除${row.spuName}吗？`"
+                icon="Delete"
+                width="200px"
+                @confirm="deleteSPU(row.id)"
+              >
                 <template #reference>
-                  <el-button type="danger" size="small" icon="Delete"></el-button>
+                  <el-button
+                    type="danger"
+                    size="small"
+                    icon="Delete"
+                  ></el-button>
                 </template>
               </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
-        <el-pagination v-model:current-page="pageNo" v-model:page-size="limit" :page-sizes="[3, 5, 10]" background
-          layout=" prev, pager, next, jumper,->,sizes,total" :total="total" @size-change="sizeChange"
-          @current-change="getData" />
+        <el-pagination
+          v-model:current-page="pageNo"
+          v-model:page-size="limit"
+          :page-sizes="[3, 5, 10]"
+          background
+          layout=" prev, pager, next, jumper,->,sizes,total"
+          :total="total"
+          @size-change="sizeChange"
+          @current-change="getData"
+        />
       </div>
-      <SPUForm v-show="scene == 1" ref="SPU" @changeScene="changeScene"></SPUForm>
-      <SKUForm v-show="scene == 2" ref="SKU" @changeScene="changeScene"></SKUForm>
+      <SPUForm
+        v-show="scene == 1"
+        ref="SPU"
+        @changeScene="changeScene"
+      ></SPUForm>
+      <SKUForm
+        v-show="scene == 2"
+        ref="SKU"
+        @changeScene="changeScene"
+      ></SKUForm>
       <el-dialog title="SKU列表" v-model="dialogVisible" width="30%">
         <el-table :data="SKUList">
           <el-table-column prop="skuName" label="SKU名称"></el-table-column>
@@ -36,7 +89,11 @@
           <el-table-column prop="weight" label="SKU重量"></el-table-column>
           <el-table-column prop="col.id" label="SKU图片">
             <template v-slot="{ row }">
-              <el-image :src="row.skuDefaultImg" fit="fill" :lazy="true"></el-image>
+              <el-image
+                :src="row.skuDefaultImg"
+                fit="fill"
+                :lazy="true"
+              ></el-image>
             </template>
           </el-table-column>
         </el-table>

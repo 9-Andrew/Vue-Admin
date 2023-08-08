@@ -130,7 +130,6 @@ const handler = (row: any) => {
   tableRef.value.clearSelection()
   tableRef.value.toggleRowSelection(row, true)
   SKUParams.skuDefaultImg = row.imgUrl
-  console.log(row.imgUrl)
 }
 const save = () => {
   SKUParams.skuAttrValueList = attrList.value

@@ -20,7 +20,7 @@ let router = createRouter({
   },
 })
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
   nprogress.start()
   let store = useUserStore()
   if (store.TOKEN) {
@@ -39,7 +39,7 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 })
-router.afterEach((to, from) => {
+router.afterEach((to, _from) => {
   document.title = `${setting.title}  | ${to.meta.title}`
   nprogress.done()
 })
