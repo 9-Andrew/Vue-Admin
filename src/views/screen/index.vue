@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import Header from './components/header/index.vue';
-import Main from './components/main/index.vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import Header from './components/header/index.vue'
+import Main from './components/main/index.vue'
 import '@/assets/font/font.css'
 
 const screen = ref()
@@ -22,8 +22,6 @@ const getScale = (w = 1920, h = 1080) => {
 }
 const screenScale = () => {
   screen.value.style.transform = `scale(${getScale()}) translate(-50%, -50%)`
-  console.log(1);
-
 }
 onMounted(() => {
   screenScale()

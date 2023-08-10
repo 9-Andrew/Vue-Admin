@@ -1,19 +1,19 @@
 <template>
   <div class="age-ratio">
     <div class="top">
-      <div class="title">年龄比例</div>
+      <div class="title">性别比例</div>
     </div>
     <div class="sex">
-      <div class="man"><img src="../../../images/man.png" alt=""></div>
-      <div class="woman"><img src="../../../images/woman.png" alt=""></div>
+      <div class="man"><img src="../../../images/man.png" alt="" /></div>
+      <div class="woman"><img src="../../../images/woman.png" alt="" /></div>
     </div>
     <div class="charts" ref="charts"></div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import * as echarts from 'echarts';
+import { ref, onMounted } from 'vue'
+import * as echarts from 'echarts'
 
 const charts = ref()
 
@@ -24,11 +24,11 @@ onMounted(() => {
       type: 'value',
       show: false,
       min: 0,
-      max: 100
+      max: 100,
     },
     yAxis: {
       type: 'category',
-      show: false
+      show: false,
     },
     series: [
       {
@@ -40,15 +40,15 @@ onMounted(() => {
         stack: 'total',
         itemStyle: {
           color: '#007afe',
-          borderRadius: [20, 0, 0, 20]
+          borderRadius: [20, 0, 0, 20],
         },
         z: 3,
         label: {
           show: true,
           offset: [-55, -30],
           color: '#fff',
-          formatter: '{a0}{c0}%'
-        }
+          formatter: '{a0}{c0}%',
+        },
       },
       {
         name: '女生',
@@ -59,25 +59,25 @@ onMounted(() => {
         stack: 'total',
         itemStyle: {
           color: '#ff4b7a',
-          borderRadius: [0, 20, 20, 0]
+          borderRadius: [0, 20, 20, 0],
         },
         label: {
           show: true,
           offset: [80, -30],
           color: '#fff',
-          formatter: '{a0}{c0}%'
-        }
-      }
+          formatter: '{a0}{c0}%',
+        },
+      },
     ],
     tooltip: {
-      formatter: '{a0}占比{c0}%'
+      formatter: '{a0}占比{c0}%',
     },
     grid: {
       top: 0,
       bottom: 0,
       left: '50px',
-      right: '50px'
-    }
+      right: '50px',
+    },
   })
 })
 </script>
@@ -102,10 +102,9 @@ onMounted(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom
+        left;
     }
-
-
   }
 
   .sex {

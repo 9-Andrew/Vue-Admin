@@ -5,9 +5,7 @@
       <router-link to="/home" class="btn">首页</router-link>
     </el-col>
     <el-col :span="12" :offset="0" class="center">
-      <h1 class="title">
-        智慧旅游可视化大数据展示平台
-      </h1>
+      <h1 class="title">智慧旅游可视化大数据展示平台</h1>
     </el-col>
     <el-col :span="6" :offset="0" class="right">
       <div class="btn">统计报告</div>
@@ -17,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeMount } from 'vue';
+import { ref, onMounted, onBeforeMount } from 'vue'
 import moment from 'moment'
 
 let time = ref()
