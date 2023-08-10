@@ -5,21 +5,42 @@
     <el-table-column label="修改时间" prop="updateTime"></el-table-column>
     <el-table-column label="操作">
       <template v-slot="{ row }">
-        <el-button type="primary" size="default" :disabled="row.level == 4" @click="addPermission(row)">{{ row.level ==
-          3 ?
-          '添加功能' :
-          '添加菜单'
-        }}</el-button>
-        <el-button type="warning" size="default" :disabled="row.level == 1" @click="editPermission(row)">编辑</el-button>
-        <el-popconfirm :title="`你确认要删除${row.name}吗？`"  icon="Delete" width="220px" @confirm="deletePermission(row.id)">
+        <el-button
+          type="primary"
+          size="default"
+          :disabled="row.level == 4"
+          @click="addPermission(row)"
+        >
+          {{ row.level == 3 ? '添加功能' : '添加菜单' }}
+        </el-button>
+        <el-button
+          type="warning"
+          size="default"
+          :disabled="row.level == 1"
+          @click="editPermission(row)"
+        >
+          编辑
+        </el-button>
+        <el-popconfirm
+          :title="`你确认要删除${row.name}吗？`"
+          icon="Delete"
+          width="220px"
+          @confirm="deletePermission(row.id)"
+        >
           <template #reference>
-            <el-button type="danger" size="default" :disabled="row.level == 1">删除</el-button>
+            <el-button type="danger" size="default" :disabled="row.level == 1">
+              删除
+            </el-button>
           </template>
         </el-popconfirm>
       </template>
     </el-table-column>
   </el-table>
-  <el-dialog :title="permissionParams.id ? '修改菜单 ' : '添加菜单'" v-model="dialogVisible" width="30%">
+  <el-dialog
+    :title="permissionParams.id ? '修改菜单 ' : '添加菜单'"
+    v-model="dialogVisible"
+    width="30%"
+  >
     <el-form :model="permissionParams">
       <el-form-item label="名称">
         <el-input v-model="permissionParams.name"></el-input>
@@ -38,10 +59,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import { reqAllPermission, reqAddOrUpdatePermission, reqDeleteMenu } from '@/api/acl/menu/index';
-import type { Permission, PermissionParams } from '@/api/acl/menu/type';
-import { ElMessage } from 'element-plus';
+import { ref, onMounted } from 'vue'
+import {
+  reqAllPermission,
+  reqAddOrUpdatePermission,
+  reqDeleteMenu,
+} from '@/api/acl/menu/index'
+import type { Permission, PermissionParams } from '@/api/acl/menu/type'
+import { ElMessage } from 'element-plus'
 
 const permissionList = ref<Permission[]>([])
 const dialogVisible = ref(false)
@@ -49,7 +74,7 @@ const permissionParams = ref<PermissionParams>({
   pid: 0,
   level: 0,
   name: '',
-  code: ''
+  code: '',
 })
 
 const getData = async () => {
@@ -64,12 +89,11 @@ const addPermission = (row: Permission) => {
     pid: 0,
     level: 0,
     name: '',
-    code: ''
+    code: '',
   })
   delete permissionParams.value.id
   permissionParams.value.level = row.level + 1
   permissionParams.value.pid = row.id
-
 }
 const dailogConfirm = async () => {
   let result = await reqAddOrUpdatePermission(permissionParams.value)
