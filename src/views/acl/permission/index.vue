@@ -6,15 +6,37 @@
       <el-table-column label="修改时间" prop="updateTime"></el-table-column>
       <el-table-column label="操作">
         <template v-slot="{ row }">
-          <el-button type="primary" size="default" :disabled="row.level == 4" @click="addPermission(row)">
+          <el-button
+            type="primary"
+            size="default"
+            :disabled="row.level == 4"
+            v-has="`btn.Permission.add`"
+            @click="addPermission(row)"
+          >
             {{ row.level == 3 ? '添加功能' : '添加菜单' }}
           </el-button>
-          <el-button type="warning" size="default" :disabled="row.level == 1" @click="editPermission(row)">
+          <el-button
+            type="warning"
+            size="default"
+            :disabled="row.level == 1"
+            v-has="`btn.Permission.update`"
+            @click="editPermission(row)"
+          >
             编辑
           </el-button>
-          <el-popconfirm :title="`你确认要删除${row.name}吗？`" icon="Delete" width="220px" @confirm="deletePermission(row.id)">
+          <el-popconfirm
+            :title="`你确认要删除${row.name}吗？`"
+            icon="Delete"
+            width="220px"
+            v-has="`btn.Permission.remove`"
+            @confirm="deletePermission(row.id)"
+          >
             <template #reference>
-              <el-button type="danger" size="default" :disabled="row.level == 1">
+              <el-button
+                type="danger"
+                size="default"
+                :disabled="row.level == 1"
+              >
                 删除
               </el-button>
             </template>
@@ -22,7 +44,11 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog :title="permissionParams.id ? '修改菜单 ' : '添加菜单'" v-model="dialogVisible" width="30%">
+    <el-dialog
+      :title="permissionParams.id ? '修改菜单 ' : '添加菜单'"
+      v-model="dialogVisible"
+      width="30%"
+    >
       <el-form :model="permissionParams">
         <el-form-item label="名称">
           <el-input v-model="permissionParams.name"></el-input>

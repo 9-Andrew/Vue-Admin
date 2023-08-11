@@ -7,6 +7,7 @@
           type="primary"
           icon="Plus"
           :disabled="!store.C3ID"
+          v-has="`btn.Spu.add`"
           @click="addSPU"
         >
           添加SPU
@@ -30,24 +31,28 @@
                 type="primary"
                 size="small"
                 icon="Plus"
+                v-has="`btn.Spu.addsku`"
                 @click="addSKU(row)"
               ></el-button>
               <el-button
                 type="warning"
                 size="small"
                 icon="Edit"
+                v-has="`btn.Spu.update`"
                 @click="editSPU(row)"
               ></el-button>
               <el-button
                 type="info"
                 size="small"
                 icon="InfoFilled"
+                v-has="`btn.Spu.skus`"
                 @click="showSKUInfo(row.id)"
               ></el-button>
               <el-popconfirm
                 :title="`你确认要删除${row.spuName}吗？`"
                 icon="Delete"
                 width="200px"
+                v-has="`btn.Spu.delete`"
                 @confirm="deleteSPU(row.id)"
               >
                 <template #reference>

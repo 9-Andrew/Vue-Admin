@@ -20,4 +20,6 @@ app.use(ElementPlus, {
   locale: zhCn,
 })
 app.use(globalComponent)
+import { has } from '@/directive'
+has(app)
 app.mount('#app')
