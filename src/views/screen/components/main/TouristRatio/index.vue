@@ -4,7 +4,7 @@
       <div class="title">实时游客统计</div>
       <div class="info">
         可以预约总量
-        <span>18738</span>
+        <span>{{ count }}</span>
         人
       </div>
     </div>
@@ -16,12 +16,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount, inject } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts-liquidfill'
 
 const people = ref('132412人')
 const charts = ref()
+const randomArr: any = inject('randomArr')
+const count = randomArr(1, 10000, 10000)[0]
+let timer: any = null
+const randomTouristCount = () => {
+  people.value = randomArr(1, 1000,10000 )[0] + '人'
+}
 
 onMounted(() => {
   let myCharts = echarts.init(charts.value)
@@ -33,7 +39,7 @@ onMounted(() => {
         top: '33%',
         textStyle: {
           color: '#fff',
-          fontSize:'15px'
+          fontSize: '15px',
         },
       },
     ],
@@ -143,6 +149,10 @@ onMounted(() => {
       },
     ],
   })
+  timer = setInterval(randomTouristCount, 900)
+})
+onBeforeUnmount(() => {
+  clearInterval(timer)
 })
 </script>
 

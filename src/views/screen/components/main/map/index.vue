@@ -3,12 +3,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import * as echarts from 'echarts';
+import { ref, onMounted } from 'vue'
+import * as echarts from 'echarts'
 import ChinaJSON from './china.json'
 
 const map = ref()
-const planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+const planePath =
+  'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z'
 const option = {
   geo: {
     map: 'china',
@@ -17,70 +18,73 @@ const option = {
     layoutSize: '100%',
     label: {
       show: true,
-      color: '#fff'
+      color: '#fff',
     },
     itemStyle: {
       areaColor: '#12235c',
       borderColor: '#2ab8ff',
-      borderWidth: .5,
+      borderWidth: 0.5,
       shadowColor: 'rgba(0,54,255, 0.4)',
-      shadowBlur: 100
+      shadowBlur: 100,
     },
-    emphasis: { //区域激活时的样式
+    emphasis: {
+      //区域激活时的样式
       itemStyle: {
         areaColor: '#02102b',
       },
       label: {
-        color: "#fff"
-      }
+        color: '#fff',
+      },
     },
   },
-  series: [ // 添加迁移线数据
+  series: [
+    // 添加迁移线数据
     {
       type: 'lines',
-      data: [ // 配置多个点的数据
+      data: [
+        // 配置多个点的数据
         {
           coords: [
             [118.879836, 27.667859],
-            [121.4648, 31.2891]
-          ]
+            [121.4648, 31.2891],
+          ],
         },
         {
           coords: [
             [121.4648, 31.2891],
-            [116.4551, 40.2539]
-          ]
+            [116.4551, 40.2539],
+          ],
         },
         {
           coords: [
             [113.5107, 23.2196],
-            [116.4551, 40.2539]
-          ]
+            [116.4551, 40.2539],
+          ],
         },
         {
           coords: [
             [113.671453, 36.115514],
-            [103.9526, 30.7617]
-          ]
+            [103.9526, 30.7617],
+          ],
         },
         {
           coords: [
             [85.294711, 41.371801],
             [116.408071, 33.805721],
-          ]
+          ],
         },
         {
           coords: [
             [116.4551, 40.2539],
-            [103.9526, 30.7617]
-          ]
+            [103.9526, 30.7617],
+          ],
         },
         {
           coords: [
             [115.20083, 32.591876],
-            [85.294711, 41.371801]
-          ]
-        }
+            [85.294711, 41.371801],
+          ],
+        },
       ],
       effect: {
         show: true,
@@ -94,12 +98,12 @@ const option = {
       lineStyle: {
         color: '#00eaff',
         width: 1, //尾迹线条宽度
-        opacity: .7, //尾迹线条透明度
-        curveness: .3, //尾迹线条曲直度
+        opacity: 0.7, //尾迹线条透明度
+        curveness: 0.3, //尾迹线条曲直度
       },
-    }
-  ]
-};
+    },
+  ],
+}
 
 onMounted(() => {
   echarts.registerMap('china', { geoJSON: ChinaJSON })

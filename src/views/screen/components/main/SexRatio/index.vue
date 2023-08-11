@@ -12,10 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import * as echarts from 'echarts'
 
+
 const charts = ref()
+const randomArr: any = inject('randomArr')
+const man = randomArr()[0]
 
 onMounted(() => {
   let myCharts = echarts.init(charts.value)
@@ -33,7 +36,7 @@ onMounted(() => {
     series: [
       {
         name: '男生',
-        data: [43],
+        data: [man],
         seriesLayoutBy: 'column',
         type: 'bar',
         barWidth: '20',
@@ -45,14 +48,14 @@ onMounted(() => {
         z: 3,
         label: {
           show: true,
-          offset: [-55, -30],
+          offset: [0, -30],
           color: '#fff',
           formatter: '{a0}{c0}%',
         },
       },
       {
         name: '女生',
-        data: [56],
+        data: [100 - man],
         seriesLayoutBy: 'column',
         type: 'bar',
         barWidth: '20',
@@ -63,7 +66,7 @@ onMounted(() => {
         },
         label: {
           show: true,
-          offset: [80, -30],
+          offset: [0, -30],
           color: '#fff',
           formatter: '{a0}{c0}%',
         },
@@ -102,8 +105,7 @@ onMounted(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom
-        left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
     }
   }
 

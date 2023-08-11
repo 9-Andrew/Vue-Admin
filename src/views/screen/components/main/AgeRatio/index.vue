@@ -8,20 +8,22 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts-liquidfill'
 
 const charts = ref()
+const randomArr: any = inject('randomArr')
+const arr = randomArr(5, 600)
 const data = [
-  { value: 1048, name: '10岁以下' },
-  { value: 735, name: '10-18岁' },
-  { value: 580, name: '18-30岁' },
-  { value: 484, name: '30-60岁' },
-  { value: 300, name: '60岁以上' },
+  { value: arr[0], name: '10岁以下' },
+  { value: arr[1], name: '10-18岁' },
+  { value: arr[2], name: '18-30岁' },
+  { value: arr[3], name: '30-60岁' },
+  { value: arr[4], name: '60岁以上' },
 ]
-let currentIndex = 0;
-let timer = 0;
+let currentIndex = 0
+let timer = 0
 
 onMounted(() => {
   let myChart = echarts.init(charts.value)
@@ -30,7 +32,7 @@ onMounted(() => {
     title: {
       text: '本月总量',
       left: 'center',
-      top: 'center', 
+      top: 'center',
       textStyle: {
         color: '#19E1E3',
         fontSize: 16,
@@ -38,8 +40,8 @@ onMounted(() => {
     },
     grid: { top: 0, bottom: 0, left: 0, right: 0 },
     tooltip: {
-      trigger: "item",
-      formatter: "{b} -  {d}%",
+      trigger: 'item',
+      formatter: '{b} -  {d}%',
     },
     toolbox: {
       show: true,
@@ -54,7 +56,7 @@ onMounted(() => {
         color: '#ffffff',
         fontSize: 12,
       },
-      data: data.map(v => v.name)
+      data: data.map((v) => v.name),
     },
     series: [
       {
@@ -102,8 +104,8 @@ onMounted(() => {
               {
                 c1: ' #7c94e7',
                 c2: '#1e2783',
-              }
-            ];
+              },
+            ]
             return new echarts.graphic.LinearGradient(0, 0, 1, 0, [
               {
                 offset: 0,
@@ -112,7 +114,7 @@ onMounted(() => {
               {
                 offset: 1,
                 color: colorList[params.dataIndex].c2,
-              }
+              },
             ])
           },
         },
@@ -120,9 +122,9 @@ onMounted(() => {
         label: {
           normal: {
             show: true,
-            formatter: "{d}%",
+            formatter: '{d}%',
             position: 'inside',
-            color: "#fff"
+            color: '#fff',
           },
           emphasis: {
             show: true,
@@ -139,53 +141,52 @@ onMounted(() => {
             },
             rich: {
               a: {},
-              b: {}
-            }
-          }
+              b: {},
+            },
+          },
         },
-        data: data
-      }
-    ]
-  };
-
+        data: data,
+      },
+    ],
+  }
 
   function animate() {
     timer = setInterval(function () {
-      var dataLen = option.series[0].data.length;
+      var dataLen = option.series[0].data.length
       // 取消之前高亮的图形
       myChart.dispatchAction({
         type: 'downplay',
         seriesIndex: 0,
         dataIndex: currentIndex,
-      });
-      currentIndex = (currentIndex + 1) % dataLen;
+      })
+      currentIndex = (currentIndex + 1) % dataLen
       // 高亮当前图形
       myChart.dispatchAction({
         type: 'highlight',
         seriesIndex: 0,
         dataIndex: currentIndex,
-      });
-    }, 1800);
+      })
+    }, 1800)
   }
-  animate();
+  animate()
 
-  myChart.on("mouseover", function (e) {
-    clearInterval(timer);
+  myChart.on('mouseover', function (e) {
+    clearInterval(timer)
     // 取消之前高亮的图形
     myChart.dispatchAction({
       type: 'downplay',
       seriesIndex: 0,
-    });
+    })
     myChart.dispatchAction({
       type: 'highlight',
-      dataIndex: e.dataIndex
-    });
-  });
+      dataIndex: e.dataIndex,
+    })
+  })
 
-  myChart.on("mouseout", function (e) {
-    currentIndex = e.dataIndex;
-    animate();
-  });
+  myChart.on('mouseout', function (e) {
+    currentIndex = e.dataIndex
+    animate()
+  })
   // 使用刚指定的配置项和数据显示图表
   myChart.setOption(option)
 })
