@@ -26,7 +26,7 @@ const randomArr: any = inject('randomArr')
 const count = randomArr(1, 10000, 10000)[0]
 let timer: any = null
 const randomTouristCount = () => {
-  people.value = randomArr(1, 1000,10000 )[0] + '人'
+  people.value = randomArr(1, 1000, 10000)[0] + '人'
 }
 
 onMounted(() => {
@@ -175,7 +175,8 @@ onBeforeUnmount(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom
+        left;
     }
 
     .info {

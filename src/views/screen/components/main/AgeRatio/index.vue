@@ -38,7 +38,7 @@ onMounted(() => {
         fontSize: 16,
       },
     },
-    grid: { top: 0, bottom: 0, left: 0, right: 0 },
+    grid: { top: 0, bottom: 0, left: 0, right: '0' },
     tooltip: {
       trigger: 'item',
       formatter: '{b} -  {d}%',
@@ -116,18 +116,6 @@ onMounted(() => {
                 color: colorList[params.dataIndex].c2,
               },
             ])
-          },
-        },
-
-        label: {
-          normal: {
-            show: true,
-            formatter: '{d}%',
-            position: 'inside',
-            color: '#fff',
-          },
-          emphasis: {
-            show: true,
           },
         },
 
@@ -211,12 +199,14 @@ onMounted(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom
+        left;
     }
   }
 
   .charts {
     flex-grow: 1;
+    transform: translateX(-9%);
   }
 }
 </style>

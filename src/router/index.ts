@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import routes from './routes'
+import { constRoutes } from './routes'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import setting from '@/setting'
@@ -11,7 +11,7 @@ nprogress.configure({
 
 let router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: constRoutes,
   scrollBehavior() {
     return {
       left: 0,
@@ -27,10 +27,13 @@ router.beforeEach(async (to, _from, next) => {
     if (to.path === '/login') {
       next(false)
     }
-    if (!store.userInfo.username) {
+    if (store.userInfo.name) {
+      next()
+    } else {
       await store.getUserInfo()
+      //万一刷新的时候是异步路由，有可能获取到用户信息但是异步路由没有加载完毕，出现空白效果
+      next({ ...to })
     }
-    next()
   } else {
     if (to.path === '/login') {
       next()

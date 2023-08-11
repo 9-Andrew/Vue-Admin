@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, inject } from 'vue'
 import * as echarts from 'echarts'
-import moment from 'moment';
+import moment from 'moment'
 
 const charts = ref()
 const randomArr: any = inject('randomArr')
@@ -21,53 +21,53 @@ onMounted(() => {
 
   let myCharts = echarts.init(charts.value)
   myCharts.setOption({
-    color: ["#5090FF", "#01B3E4"],
+    color: ['#5090FF', '#01B3E4'],
     tooltip: {
-      trigger: "axis",
-      backgroundColor: "rgba(0,0,0,.6)",
-      borderColor: "rgba(147, 235, 248, .8)",
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,0,0,.6)',
+      borderColor: 'rgba(147, 235, 248, .8)',
       textStyle: {
-        color: "#FFF",
-      }
+        color: '#FFF',
+      },
     },
     grid: {
-      left: "2%",
-      right: "5%",
-      bottom: "5%",
-      top: "60px",
+      left: '2%',
+      right: '5%',
+      bottom: '5%',
+      top: '60px',
       containLabel: true,
     },
     legend: {
       show: true,
-      icon: "rect",
-      orient: "horizontal",
-      left: "right",
+      icon: 'rect',
+      orient: 'horizontal',
+      left: 'right',
       itemWidth: 12,
       itemHeight: 12,
-      formatter: ["{a|{name}}"].join("\n"),
+      formatter: ['{a|{name}}'].join('\n'),
       textStyle: {
         fontSize: 12,
-        color: "#6A93B9",
+        color: '#6A93B9',
         height: 8,
         rich: {
           a: {
-            verticalAlign: "bottom",
+            verticalAlign: 'bottom',
           },
         },
       },
       data: [year, lastYear],
     },
     xAxis: {
-      type: "category",
+      type: 'category',
       axisLine: {
         lineStyle: {
-          color: "#BDD8FB",
+          color: '#BDD8FB',
           fontSize: 12,
         },
       },
       axisLabel: {
         // interval:0,
-        color: "#BDD8FB",
+        color: '#BDD8FB',
         fontSize: 12,
       },
       axisTick: {
@@ -76,17 +76,17 @@ onMounted(() => {
       data: new Array(12).fill(null).map((_, index) => index + 1),
     },
     yAxis: {
-      type: "value",
+      type: 'value',
       min: 0,
       minInterval: 1,
       nameTextStyle: {
         fontSize: 12,
-        color: "#BDD8FB",
-        align: "center",
+        color: '#BDD8FB',
+        align: 'center',
       },
       splitLine: {
         lineStyle: {
-          color: "rgba(255, 255, 255, 0.15)",
+          color: 'rgba(255, 255, 255, 0.15)',
           // type: 'dashed', // dotted 虚线
         },
       },
@@ -99,18 +99,18 @@ onMounted(() => {
       },
       axisLabel: {
         fontSize: 12,
-        fontFamily: "Bebas",
-        color: "#BDD8FB",
+        fontFamily: 'Bebas',
+        color: '#BDD8FB',
       },
     },
     series: [
       {
-        type: "line",
+        type: 'line',
         // symbol: "none",
         // showSymbol: false,
         smooth: true, // 是否曲线
         name: year, // 图例对应类别
-        data: randomArr(12,10000,5000), // 纵坐标数据
+        data: randomArr(12, 10000, 5000), // 纵坐标数据
         areaStyle: {
           // 区域颜色
           // color: new graphic.LinearGradient(0, 0, 0, 1, [
@@ -125,45 +125,45 @@ onMounted(() => {
           // ]),
           color: {
             type: 'linear',
-            x: 0,  //右
-            y: 0,  //下
-            x2: 0,  //左
-            y2: 1,  //上
+            x: 0, //右
+            y: 0, //下
+            x2: 0, //左
+            y2: 1, //上
             colorStops: [
               {
                 offset: 0.1,
-                color: '#5090FF' // 0% 处的颜色
+                color: '#5090FF', // 0% 处的颜色
               },
               {
                 offset: 1,
-                color: '#1057E500' // 100% 处的颜色
-              }
-            ]
+                color: '#1057E500', // 100% 处的颜色
+              },
+            ],
           },
         },
       },
       {
-        type: "line",
+        type: 'line',
         smooth: true,
         name: lastYear,
-        data: randomArr(12,10000,5000),
+        data: randomArr(12, 10000, 5000),
         areaStyle: {
           color: {
             type: 'linear',
-            x: 0,  //右
-            y: 0,  //下
-            x2: 0,  //左
-            y2: 1,  //上
+            x: 0, //右
+            y: 0, //下
+            x2: 0, //左
+            y2: 1, //上
             colorStops: [
               {
                 offset: 0.1,
-                color: '#01B3E4' // 0% 处的颜色
+                color: '#01B3E4', // 0% 处的颜色
               },
               {
                 offset: 1,
-                color: '#86DCF300' // 100% 处的颜色
-              }
-            ]
+                color: '#86DCF300', // 100% 处的颜色
+              },
+            ],
           },
         },
       },
@@ -192,7 +192,8 @@ onMounted(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom
+        left;
     }
   }
 

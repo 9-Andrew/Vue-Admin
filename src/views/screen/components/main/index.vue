@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { provide, onBeforeMount } from 'vue';
+import { provide, onBeforeMount } from 'vue'
 import TouristRatio from './TouristRatio/index.vue'
 import SextRatio from './SexRatio/index.vue'
 import AgeRatio from './AgeRatio/index.vue'
@@ -29,11 +29,13 @@ import Year from './year/index.vue'
 import Count from './count/index.vue'
 
 const randomArr = (length: number = 1, max: number = 100, base: number = 0) => {
-  return new Array(length).fill(null).map(_ => + Math.round(Math.random() * max + base))
+  return new Array(length)
+    .fill(null)
+    .map((_) => +Math.round(Math.random() * max + base))
 }
 onBeforeMount(() => {
   provide('randomArr', randomArr)
-}) 
+})
 </script>
 
 <style lang="scss" scoped>

@@ -6,13 +6,38 @@ import type {
   UserInfoResponse,
 } from '@/api/user/type'
 import type { UserState } from './type/type'
-import routes from '@/router/routes'
+import { constRoutes, asyncRoutes, anyRoute } from '@/router/routes'
+import router from '@/router'
+import * as _ from 'lodash'
 
+const filterRoutes = (asyncRoutes: any, userRoutes: any) => {
+  return asyncRoutes.filter((item: any) => {
+    if (userRoutes.includes(item.name)) {
+      if (item.children && item.children.length > 0) {
+        item.children = filterRoutes(item.children, userRoutes)
+      }
+      return item
+    }
+  })
+}
+const resetRouter = () => {
+  // 获取所有路由
+  router.getRoutes().forEach((route) => {
+    // 获取路由name
+    const { name } = route
+    // 移除所有路由
+    router.hasRoute(name as string) && router.removeRoute(name as string)
+  })
+  // 添加常量路由
+  ;[...constRoutes].forEach((route: any) => {
+    router.addRoute(route)
+  })
+}
 const useUserStore = defineStore('user', {
   state(): UserState {
     return {
       TOKEN: localStorage.getItem('TOKEN'),
-      menuRoutes: routes,
+      menuRoutes: constRoutes,
       userInfo: {
         avatar: '',
         name: '',
@@ -37,6 +62,14 @@ const useUserStore = defineStore('user', {
       let result: UserInfoResponse = await reqUserInfo()
       if (result.code == 200) {
         this.userInfo = result.data
+        let userRoutes = filterRoutes(
+          _.cloneDeep(asyncRoutes),
+          result.data.routes,
+        )
+        this.menuRoutes = [...constRoutes, ...userRoutes, anyRoute]
+        userRoutes.concat(anyRoute).forEach((item: any) => {
+          router.addRoute(item)
+        })
       }
     },
     async logout() {
@@ -45,6 +78,9 @@ const useUserStore = defineStore('user', {
         localStorage.clear()
         this.$reset()
       }
+      setTimeout(() => {
+        resetRouter()
+      })
     },
   },
 })

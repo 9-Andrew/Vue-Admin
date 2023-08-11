@@ -1,4 +1,4 @@
-export default [
+export const constRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index.vue'),
@@ -17,14 +17,22 @@ export default [
       },
     ],
   },
-
   {
     path: '/screen',
     component: () => import('@/views/screen/index.vue'),
     name: 'Screen',
     meta: { title: '数据大屏', icon: 'Platform' },
   },
+
   {
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    meta: { title: '404', hidden: true },
+  },
+]
+export const asyncRoutes = [
+  {
+    name: 'Acl',
     path: '/acl',
     component: () => import('@/layout/index.vue'),
     meta: { title: '权限管理', icon: 'Lock' },
@@ -33,7 +41,7 @@ export default [
       {
         path: '/acl/user',
         component: () => import('@/views/acl/user/index.vue'),
-        name: 'Acl',
+        name: 'User',
         meta: { title: '用户管理', icon: 'User' },
       },
       {
@@ -51,6 +59,7 @@ export default [
     ],
   },
   {
+    name: 'Product',
     path: '/product',
     component: () => import('@/layout/index.vue'),
     meta: { title: '商品管理', icon: 'Goods' },
@@ -82,14 +91,9 @@ export default [
       },
     ],
   },
-  {
-    path: '/404',
-    component: () => import('@/views/404/index.vue'),
-    meta: { title: '404', hidden: true },
-  },
-  {
-    path: '/:catchAll(.*)',
-    redirect: '/404',
-    meta: { title: '重定向', hidden: true },
-  },
 ]
+export const anyRoute = {
+  path: '/:catchAll(.*)',
+  redirect: '/404',
+  meta: { title: '重定向', hidden: true },
+}

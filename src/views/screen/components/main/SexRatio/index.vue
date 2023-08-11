@@ -15,7 +15,6 @@
 import { ref, onMounted, inject } from 'vue'
 import * as echarts from 'echarts'
 
-
 const charts = ref()
 const randomArr: any = inject('randomArr')
 const man = randomArr()[0]
@@ -105,7 +104,8 @@ onMounted(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom
+        left;
     }
   }
 
