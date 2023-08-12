@@ -67,14 +67,14 @@ onMounted(() => {
       itemGap: 20,
       formatter: function (name: string) {
         let text = ''
-        data.forEach((val: ChartProp) => {
+        data.forEach((val: any) => {
           if (val.name === name) {
             text = name + ' --- ' + val.percentage
           }
         })
         return text
       },
-      data: data.map((val: ChartProp) => val.name),
+      data: data.map((val: any) => val.name),
     },
     series: [
       {
@@ -230,7 +230,7 @@ onMounted(() => {
         labelLine: {
           show: false,
         },
-        data: new Array(150).fill('').map((val: string, index: number) => {
+        data: new Array(150).fill('').map((_val: string, index: number) => {
           if (index % 3 === 0) {
             return {
               name: (index + 1).toString(),

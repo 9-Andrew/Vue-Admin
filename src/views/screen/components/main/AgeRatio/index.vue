@@ -118,7 +118,17 @@ onMounted(() => {
             ])
           },
         },
-
+        label: {
+          normal: {
+            show: true,
+            formatter: "{d}%",
+            position: 'inside',
+            color: "#fff"
+          },
+          emphasis: {
+            show: true,
+          },
+        },
         emphasis: {
           label: {
             show: true,
@@ -199,8 +209,7 @@ onMounted(() => {
       font-size: 22px;
       height: 40px;
       line-height: 36px;
-      background: url('../../../images//dataScreen-title.png') no-repeat bottom
-        left;
+      background: url('../../../images//dataScreen-title.png') no-repeat bottom left;
     }
   }
 

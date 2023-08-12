@@ -1,7 +1,12 @@
 <template>
   <div>
     <el-card shadow="always" :body-style="{ padding: '20px' }">
-      <el-button type="primary" icon="Plus" v-has="'btn.Trademark.add'" @click="addTrademark">
+      <el-button
+        type="primary"
+        icon="Plus"
+        v-has="'btn.Trademark.add'"
+        @click="addTrademark"
+      >
         添加品牌
       </el-button>
       <el-table :data="trademarkList" border style="margin: 20px 0">
@@ -28,14 +33,14 @@
               type="warning"
               size="small"
               icon="Edit"
-              v-has="`btn.Trademark.update`" 
+              v-has="`btn.Trademark.update`"
               @click="updateTrademark(row)"
             ></el-button>
             <el-popconfirm
               :title="`你确认要删除${row.tmName}吗？`"
               icon="Delete"
               width="200px"
-              v-has="`btn.Trademark.delete`" 
+              v-has="`btn.Trademark.delete`"
               @confirm="deleteTrademark(row.id)"
             >
               <template #reference>

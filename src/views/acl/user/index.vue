@@ -3,7 +3,10 @@
     <el-card shadow="always" :body-style="{ padding: '20px' }">
       <el-form inline class="form">
         <el-form-item label="用户名：">
-          <el-input v-model="username" placeholder="请输入搜索用户名"></el-input>
+          <el-input
+            v-model="username"
+            placeholder="请输入搜索用户名"
+          ></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getData">搜索</el-button>
@@ -13,33 +16,91 @@
         </el-form-item>
       </el-form>
     </el-card>
-    <el-card shadow="always" :body-style="{ padding: '20px' }" style="margin-top: 20px">
-      <el-button type="primary" size="default" v-has="`btn.User.add`" @click="addUser">
+    <el-card
+      shadow="always"
+      :body-style="{ padding: '20px' }"
+      style="margin-top: 20px"
+    >
+      <el-button
+        type="primary"
+        size="default"
+        v-has="`btn.User.add`"
+        @click="addUser"
+      >
         添加用户
       </el-button>
-      <el-button type="danger" size="default" v-has="`btn.User.remove`" @click="deleteUsers"
-        :disabled="deleteList.length == 0">
+      <el-button
+        type="danger"
+        size="default"
+        v-has="`btn.User.remove`"
+        @click="deleteUsers"
+        :disabled="deleteList.length == 0"
+      >
         批量删除
       </el-button>
-      <el-table :data="UserList" border style="margin: 10px 0" @selection-change="selectChange">
+      <el-table
+        :data="UserList"
+        border
+        style="margin: 10px 0"
+        @selection-change="selectChange"
+      >
         <el-table-column width="80" align="center" type="selection" />
-        <el-table-column label="#" width="80" align="center" type="index"></el-table-column>
-        <el-table-column label="ID" width="120" prop="id" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          label="#"
+          width="80"
+          align="center"
+          type="index"
+        ></el-table-column>
+        <el-table-column
+          label="ID"
+          width="120"
+          prop="id"
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column label="用户名字" prop="name"></el-table-column>
         <el-table-column label="用户名称" prop="username"></el-table-column>
-        <el-table-column label="用户角色" prop="roleName" show-overflow-tooltip></el-table-column>
-        <el-table-column label="创建时间" prop="createTime" show-overflow-tooltip></el-table-column>
-        <el-table-column label="更新时间" prop="updateTime" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          label="用户角色"
+          prop="roleName"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          label="创建时间"
+          prop="createTime"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          label="更新时间"
+          prop="updateTime"
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column label="操作" width="320" align="center">
           <template v-slot="{ row }">
-            <el-button type="success" size="small" icon="User" v-has="`btn.User.assgin`" @click="setRole(row)">
+            <el-button
+              type="success"
+              size="small"
+              icon="User"
+              v-has="`btn.User.assgin`"
+              @click="setRole(row)"
+            >
               分配角色
             </el-button>
-            <el-button type="warning" size="small" icon="Edit" v-has="`btn.User.update`" @click="editUser(row)">
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              v-has="`btn.User.update`"
+              @click="editUser(row)"
+            >
               编辑
             </el-button>
-            <el-popconfirm :title="`你确认要删除${row.name}吗？`" icon="Delete" width="240px" v-has="`btn.User.remove`"
-              @confirm="deleteUser(row.id)">
+            <el-popconfirm
+              :title="`你确认要删除${row.name}吗？`"
+              icon="Delete"
+              width="240px"
+              v-has="`btn.User.remove`"
+              @confirm="deleteUser(row.id)"
+            >
               <template #reference>
                 <el-button type="danger" size="small" icon="Delete">
                   删除
@@ -49,11 +110,21 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination v-model:current-page="pageNo" v-model:page-size="limit" :page-sizes="[3, 5, 9]" background
-        layout=" prev, pager, next, jumper,->,sizes,total" :total="total" @size-change="sizeChange"
-        @current-change="getData" />
+      <el-pagination
+        v-model:current-page="pageNo"
+        v-model:page-size="limit"
+        :page-sizes="[3, 5, 9]"
+        background
+        layout=" prev, pager, next, jumper,->,sizes,total"
+        :total="total"
+        @size-change="sizeChange"
+        @current-change="getData"
+      />
     </el-card>
-    <el-drawer :title="userParams.id ? '修改用户' : '添加用户'" v-model="drawerVisible">
+    <el-drawer
+      :title="userParams.id ? '修改用户' : '添加用户'"
+      v-model="drawerVisible"
+    >
       <el-form :model="userParams" :rules="rules" label-width="80px" ref="Form">
         <el-form-item label="用户姓名" prop="name">
           <el-input v-model="userParams.name"></el-input>
@@ -76,10 +147,17 @@
           <el-input v-model="userParams.name" disabled></el-input>
         </el-form-item>
         <el-form-item label="职位列表" prop="username">
-          <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">
+          <el-checkbox
+            v-model="checkAll"
+            :indeterminate="isIndeterminate"
+            @change="handleCheckAllChange"
+          >
             全选
           </el-checkbox>
-          <el-checkbox-group v-model="assignRoles" @change="handleCheckedCitiesChange">
+          <el-checkbox-group
+            v-model="(assignRoles as any)"
+            @change="handleCheckedCitiesChange"
+          >
             <el-checkbox v-for="r in allRolesList" :key="r.id" :label="r">
               {{ r.roleName }}
             </el-checkbox>

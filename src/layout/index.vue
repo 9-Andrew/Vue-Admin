@@ -3,14 +3,8 @@
     <div class="layout-sidebar" :class="{ fold: settingStore.fold }">
       <Logo></Logo>
       <el-scrollbar class="scroll-container">
-        <el-menu
-          :collapse="settingStore.fold"
-          active-text-color="#fff"
-          background-color="#001529"
-          text-color="#959ea6"
-          :default-active="route.path"
-          router
-        >
+        <el-menu :collapse="(settingStore.fold as boolean)" active-text-color="#fff" background-color="#001529"
+          text-color="#959ea6" :default-active="route.path" router>
           <Menu :menuRoutes="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
