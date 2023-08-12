@@ -9,12 +9,13 @@
       <img src="https://img.shields.io/badge/element--plus-2.3.7-brightgreen" alt="element-plus">
     </a>
 </p>
-# 说明
+
+## 说明
 
 这是一个使用 Vue3、Pinia、Vue-Router、Vite、Element-Plus、Typescript 和 SCSS 构建的后台管理系统。传送门：[在线地址](http://43.138.113.163/)。
 
-> 如果对您对此项目有兴趣，可以点 "Star" 支持一下 谢谢！ ^\_\^
-> 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
+> 如果对您对此项目有兴趣，可以点 "star" 支持一下 谢谢！ ^\_\^
+> 如有问题请直接在 issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 ## 项目运行
 
