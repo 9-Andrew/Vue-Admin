@@ -1,18 +1,51 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center">
+    <img src="https://img1.imgtp.com/2023/06/02/dih93Zck.png" alt="Logo">
+</h1>
+<p align="center">
+    <a href="https://github.com/vuejs/vue">
+      <img src="https://img.shields.io/badge/vue-3.3.4-brightgreen" alt="vue">
+    </a>
+    <a href="https://github.com/ElemeFE/element">
+      <img src="https://img.shields.io/badge/element--plus-2.3.7-brightgreen" alt="element-plus">
+    </a>
+</p>
+# 说明
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个使用 Vue3、Pinia、Vue-Router、Vite、Element-Plus、Typescript 和 SCSS 构建的后台管理系统。传送门：[在线地址](http://43.138.113.163/)。
 
-## Recommended IDE Setup
+> 如果对您对此项目有兴趣，可以点 "Star" 支持一下 谢谢！ ^\_\^
+> 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 项目运行
 
-## Type Support For `.vue` Imports in TS
+```
+git clone https://github.com/Anjiu1/Vue-Admin.git
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+cd Vue-Admin
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+npm install 或 pnpm(推荐)
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+npm run dev
+```
+
+## 功能列表
+
+1. 登录模块
+2. Layout 模块（主界面）
+   - 设计主界面布局，包括左侧菜单栏、顶部导航栏和主要内容区域。
+   - 实现顶部 TabBar 组件，用于展示当前打开的页面，支持面包屑导航、刷新、全屏等功能。
+3. 商品管理模块
+   - 品牌管理
+   - 属性管理
+   - SPU
+   - SKU
+4. 权限管理模块
+   - 用户管理
+   - 角色管理
+   - 菜单管理
+5. 数据大屏
+   - 设计数据大屏初始页面，展示数据可视化图表，包括柱状图、饼图、折线图、水球图、地图。
+6. 动态路由（菜单权限、按钮权限）
+   - 根据用户角色获取正确的路由权限，展示对应的菜单项。
+   - 实现动态路由加载，根据用户权限动态生成路由。
+   - 根据用户角色获取相应的按钮权限，控制按钮的显式。
