@@ -13,7 +13,7 @@
 ## 说明
 
 这是一个使用 Vue3、Pinia、Vue-Router、Vite、Element-Plus、Typescript 和 SCSS 构建的后台管理系统。
-传送门：[在线地址](http://43.138.113.163/)。
+传送门：[在线地址](http://43.138.113.163:81/)。
 
 
 ## 项目运行
